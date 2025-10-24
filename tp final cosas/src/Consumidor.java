@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-public class Consumidor extends Usuario{
+public final class Consumidor extends Usuario{
     List<Libro> carrito; ///error xq no esta clase libro
     String historial_compras; //ventas
     Integer cantidad_compras;
@@ -9,15 +11,15 @@ public class Consumidor extends Usuario{
 
     /// Constructores
 
-    public Consumidor(String nombre, String mail, String password, String DNI, String direccion, Boolean activo,
-                      List<Libro> carrito, String historial_compras, Integer cantidad_compras) {
+    public Consumidor(String nombre, String mail, String password, String DNI, Direccion direccion, Boolean activo,
+                      String historial_compras, Integer cantidad_compras) {
         super(nombre, mail, password, DNI, direccion, activo);
         this.carrito = new ArrayList<>();
         this.historial_compras = historial_compras;
         this.cantidad_compras = cantidad_compras;
     }
 
-    public Consumidor(String nombre, String mail, String password, String DNI, String direccion, Boolean activo) {
+    public Consumidor(String nombre, String mail, String password, String DNI, Direccion direccion, Boolean activo) {
         super(nombre, mail, password, DNI, direccion, activo);
     }
 
@@ -40,9 +42,26 @@ public class Consumidor extends Usuario{
 
     /// Metodos
 
-    public void verCarrito (){}
+    public void verCarrito (){
+        ListIterator <Libro> it = carrito.listIterator();
+        while (it.hasNext()){
+            Libro aux = (Libro) it.next();
+            System.out.println(aux);
+        }
+    }
     public void verUltimasCompras (){}
-    public void totalCarrito (){}
-    public void pagar (){} ///nedios de pago distintos
-    public void vaciarCarrito(){}
+    public Double totalCarrito (){
+
+        ListIterator<Libro>it=carrito.listIterator();
+        double total=0;
+        while (it.hasNext()){
+            total=total+it.next().getPrecio();
+        }
+        return total;
+    }
+    public void pagar (){} ///medios de pago distintos
+    public String vaciarCarrito(){
+        carrito.clear();
+    return "Se vacio el carrito";
+    }
 }

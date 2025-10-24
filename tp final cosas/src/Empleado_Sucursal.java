@@ -1,4 +1,6 @@
-public class Empleado_Sucursal extends Empleado{
+import java.util.concurrent.locks.Condition;
+
+public final class Empleado_Sucursal extends Empleado{
     int numVentas;
     double bono;
     Turnos turno;
@@ -6,22 +8,24 @@ public class Empleado_Sucursal extends Empleado{
 
     /// Constructores
 
-    public Empleado_Sucursal(String nombre, String mail, String password, String DNI, String direccion, Boolean activo,
-                             int idEmpleado, tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria,
+    public Empleado_Sucursal(String nombre, String mail, String password, String DNI, Direccion direccion, Boolean activo,
+                              tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria,
                              int numVentas, double bono, Turnos turno, String deducciones) {
-        super(nombre, mail, password, DNI, direccion, activo, idEmpleado, tipo, ingreso, categoria);
+        super(nombre, mail, password, DNI, direccion, activo, tipo, ingreso, categoria);
         this.numVentas = numVentas;
         this.bono = bono;
         this.turno = turno;
         this.deducciones = deducciones;
     }
 
-    public Empleado_Sucursal(String nombre, String mail, String password, String DNI, String direccion, Boolean activo,
-                                int idEmpleado, tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria) {
-        super(nombre, mail, password, DNI, direccion, activo, idEmpleado, tipo, ingreso, categoria);
+    public Empleado_Sucursal(String nombre, String mail, String password, String DNI, Direccion direccion, Boolean activo,
+                               tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria) {
+        super(nombre, mail, password, DNI, direccion, activo, tipo, ingreso, categoria);
+
     }
 
     public Empleado_Sucursal() {
+        this.idEmpleado = contador++;
     } ///vacio
 
     /// G - S
@@ -56,7 +60,10 @@ public class Empleado_Sucursal extends Empleado{
 
     /// Metodos
     // cambiar retornos y cuerpo
-    public void vender (){}
+    public void vender (Consumidor consumidor){
+        double total = consumidor.totalCarrito();
+    }
+
     public void cambiarMercaderia(){}
     public void devolverDinero (){}
     public void anularVenta (){}
