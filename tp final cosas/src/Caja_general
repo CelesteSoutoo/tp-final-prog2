@@ -1,0 +1,34 @@
+public class Caja_general{
+    private static double total_efectivo;
+    private static double cta_corriente;
+
+    public void actualizarCaja(Venta venta) {
+        if (venta.getEstado() == Estado_venta.COMPLETADO) {
+            if (venta.getMedio() == Medio_de_pago.EFECTIVO) {
+                agregarEfectivo(venta.getTotal());
+            } else{
+                acreditarCuenta(venta.getTotal());
+            }
+        }
+        else if (venta.getEstado() == Estado_venta.ANULADO) {
+            if (venta.getMedio() == Medio_de_pago.EFECTIVO) {
+                quitarEfectivo(venta.getTotal());
+            } else {
+                debitarCuenta(venta.getTotal());
+            }
+        }
+    }
+    
+    private void agregarEfectivo(double total) {
+        total_efectivo = total_efectivo + total;
+    }
+    private void acreditarCuenta(double total) {
+        cta_corriente = cta_corriente + total;
+    }
+    private void  quitarEfectivo(double total) {
+        total_efectivo = total_efectivo - total;
+    }
+    private void debitarCuenta(double total) {
+        cta_corriente = cta_corriente - total;
+    }
+}
