@@ -49,7 +49,7 @@ public final class Consumidor extends Usuario{
             System.out.println(aux);
         }
     }
-    public void verUltimasCompras (){}
+    public void verUltimasCompras (){}///falta
     public Double totalCarrito (){
 
         ListIterator<Libro>it=carrito.listIterator();
@@ -59,7 +59,7 @@ public final class Consumidor extends Usuario{
         }
         return total;
     }
-    public void pagar (){} ///medios de pago distintos
+    public void pagar (){} ///medios de pago distintos - falta
     public String vaciarCarrito(){
         carrito.clear();
     return "Se vacio el carrito";

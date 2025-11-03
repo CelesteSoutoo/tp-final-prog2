@@ -30,7 +30,9 @@ public final class Empleado_Oficina extends Empleado implements Iconsultas{
 
     /// Metodos
 
-    public void modifCaja(){}
+    public void modifCaja(){
+
+    }
     public void modifDepositos(){}
     public void modifHorarios (){}
     public void modifSalarios (){}

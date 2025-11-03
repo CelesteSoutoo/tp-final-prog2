@@ -64,13 +64,29 @@ public final class Empleado_Sucursal extends Empleado{
         double total = consumidor.totalCarrito();
     }
 
-    public void cambiarMercaderia(){}
-    public void devolverDinero (){}
-    public void anularVenta (){}
-    public void deposito (){}
-    public void llevarLibros (){}
-    public void entregaLibro (Usuario DNI, Venta id){}; /// Error xq no esta la clase venta
-    private Boolean ventaCorrespondePersona (){return true;} ///ver retorno
-    public void pedirProveedor (){}
-    public void cierre (){}
+    public void cambiarMercaderia(){
+
+    }
+    public String devolverDinero (int monto, double porcentajeBono){
+        this.bono -= monto * porcentajeBono;
+    return "Devolución de $" + monto + " procesada.";
+    }
+    public String anularVenta (){
+        if (numVentas > 0) {
+            numVentas--;
+            return "Venta anulada, total de ventas ahora: " + numVentas;
+        }
+        return "No hay ventas para anular.";
+        }
+    public String deposito (){
+        return "";
+    }///ver metodo
+    public String llevarLibros (){return "";}///ver metodo
+    public String entregaLibro (Usuario usuario, Venta venta){
+        return "Entrega de libro al usuario " + usuario.getNombre();
+    }; /// Error xq no esta la clase venta
+    private Boolean ventaCorrespondePersona (Consumidor consumidor){
+        return consumidor != null && consumidor.getDNI().equals(this.getDNI());}
+    public void pedirProveedor (){}///ver metodo
+    public void cierre (){}///ver metodo
 }
