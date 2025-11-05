@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public final class Consumidor extends Usuario{
-    List<Libro> carrito; ///error xq no esta clase libro
+    List<Libro> carrito;
     String historial_compras; //ventas
     Integer cantidad_compras;
 
