@@ -82,9 +82,10 @@ public final class Empleado_Sucursal extends Empleado{
         return "";
     }///ver metodo
     public String llevarLibros (){return "";}///ver metodo
+    /*
     public String entregaLibro (Usuario usuario, Venta venta){
         return "Entrega de libro al usuario " + usuario.getNombre();
-    }; /// Error xq no esta la clase venta
+    }; /// Error xq no esta la clase venta */
     private Boolean ventaCorrespondePersona (Consumidor consumidor){
         return consumidor != null && consumidor.getDNI().equals(this.getDNI());}
     public void pedirProveedor (){}///ver metodo

@@ -40,6 +40,10 @@ public final class Consumidor extends Usuario{
         this.cantidad_compras = cantidad_compras;
     }
 
+    public List<Libro> getCarrito() {
+        return carrito;
+    }
+
     /// Metodos
 
     public void verCarrito (){

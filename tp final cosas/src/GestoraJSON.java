@@ -6,8 +6,12 @@ public class GestoraJSON {
 
     public JSONObject serializarEmpleadoOfic (Empleado_Oficina empleado){
         JSONObject objeto = null;
+        JSONArray arrayLocales = null;
+        JSONArray arrayObserv = null;
         try{
             objeto = new JSONObject();
+            arrayLocales = new JSONArray();
+            arrayObserv = new JSONArray();
 
             objeto.put("nombre", empleado.getNombre());
             objeto.put("mail", empleado.getMail());
@@ -18,7 +22,16 @@ public class GestoraJSON {
             objeto.put("tipo", empleado.getTipo());
             objeto.put("ingreso", empleado.getIngreso());
             objeto.put("categoria", empleado.getCategoria());
-            /// FALTAN LISTAS DE EMPLEADO_OFICINA
+
+            for (String local : empleado.getLocales()){
+                arrayLocales.put(local);
+            } ///JSONArray de locales
+            objeto.put("locales", arrayLocales);
+
+            for (String observacion : empleado.getObservaciones()){
+                arrayObserv.put(observacion);
+            } ///JSONArray de observaciones
+            objeto.put("observaciones", arrayObserv);
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -51,15 +64,21 @@ public class GestoraJSON {
     }
     public JSONObject serializarConsumidor (Consumidor consumidor){
         JSONObject objeto = null;
+        JSONArray arrayCarrito = null;
         try{
             objeto = new JSONObject();
+            arrayCarrito = new JSONArray();
 
             objeto.put("nombre", consumidor.getNombre());
             objeto.put("mail", consumidor.getMail());
             objeto.put("password", consumidor.getPassword());
             objeto.put("DNI", consumidor.getDNI());
             objeto.put("activo", consumidor.getActivo());
-            /// FALTA PONER EL CARRITO
+
+            for (Libro l : consumidor.getCarrito()){
+                arrayCarrito.put(serializarLibro (l));
+            }
+            objeto.put("carrito", arrayCarrito);
             objeto.put("historial_compras", consumidor.getHistorial_compras());
             objeto.put("cantidad_compras", consumidor.getCantidad_compras());
 
@@ -70,13 +89,19 @@ public class GestoraJSON {
     }
     public JSONObject serializarLibro (Libro libro){
         JSONObject objeto = null;
+        JSONArray array = null;
         try{
             objeto = new JSONObject();
+            array = new JSONArray();
 
             objeto.put("isbn", libro.getIsbn());
             objeto.put("localId", libro.getLocalId());
             objeto.put("nombre", libro.getNombre());
-            /// FALTA LISTA AUTORES
+
+            for (String autor : libro.getAutores()){
+                array.put(autor);
+            } ///JSONArray de autores.
+            objeto.put("listaAutores", array);
             objeto.put("precio", libro.getPrecio());
             objeto.put("editorial", libro.getEditorial());
             objeto.put("anio", libro.getAnio());
@@ -86,4 +111,6 @@ public class GestoraJSON {
         }
         return objeto;
     }
+
+    
 }

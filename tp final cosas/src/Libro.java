@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Libro{
+public class Libro{
   //atributos de id
   private final String isbn;
   private int local_id; //para identificar libros que no tengan isbn ademas para poder tener un UNICO hashmap que una tanto libros nuevos y usados
@@ -17,8 +18,7 @@ public abstract class Libro{
   private Boolean disponible;
 
   //constructores
-  public Libro(String isbn, String nombre, List<String> autores,
-                double precio, String editorial, int anio, boolean disponible) {
+  public Libro(String isbn, String nombre, double precio, String editorial, int anio, boolean disponible) {
 
         this.isbn = isbn;
         this.local_id = id_statico++;
@@ -112,7 +112,8 @@ public abstract class Libro{
         this.disponible = disponible;
     }
 
-  //metodos
+
+    //metodos
 
   @Override
     public String toString() {

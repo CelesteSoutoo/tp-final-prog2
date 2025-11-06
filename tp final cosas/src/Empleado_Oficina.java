@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public final class Empleado_Oficina extends Empleado implements Iconsultas{
 
@@ -10,16 +8,10 @@ public final class Empleado_Oficina extends Empleado implements Iconsultas{
     /// Constructores
 
     public Empleado_Oficina(String nombre, String mail, String password, String DNI, Direccion direccion, Boolean activo,
-                            tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria,
-                            List<String> locales, Queue<String> observaciones) {
+                            tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria) {
         super(nombre, mail, password, DNI, direccion, activo, tipo, ingreso, categoria);
         this.locales = new ArrayList<>();
         this.observaciones = observaciones;
-    }
-
-    public Empleado_Oficina(String nombre, String mail, String password, String DNI, Direccion direccion, Boolean activo,
-                            tipoEmpleado tipo, Double ingreso, categoriaEmpleado categoria) {
-        super(nombre, mail, password, DNI, direccion, activo, tipo, ingreso, categoria);
     }
 
     public Empleado_Oficina() {
@@ -27,6 +19,14 @@ public final class Empleado_Oficina extends Empleado implements Iconsultas{
     } ///vacio
 
     /// G - S
+
+    public List<String> getLocales() {
+        return locales;
+    }
+
+    public Queue<String> getObservaciones() {
+        return observaciones;
+    }
 
     /// Metodos
 
