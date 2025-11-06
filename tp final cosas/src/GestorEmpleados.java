@@ -129,4 +129,72 @@ public class GestorEmpleados {
         }
         return arrayEmpleados;
     }
+
+    ///----------------------------------- DESERIALIZACION DE EMPLEADOS -----------------------------------///
+
+    public Empleado_Oficina deserializarEmpleadoOfic (JSONObject jObj){
+        Empleado_Oficina empleado = new Empleado_Oficina();
+        try{
+            empleado.setNombre(jObj.getString("nombre"));
+            empleado.setMail(jObj.getString("mail"));
+            empleado.setPassword(jObj.getString("password"));
+            empleado.setDNI(jObj.getString("DNI"));
+            empleado.setActivo(jObj.getBoolean("activo"));
+            empleado.setIdEmpleado(jObj.getInt("idEmpleado"));
+            empleado.setTipo(tipoEmpleado.valueOf(jObj.getString("tipo")));
+            empleado.setIngreso(jObj.getDouble("ingreso"));
+            empleado.setCategoria((categoriaEmpleado) jObj.get("categoria"));
+            ///FALTAN 2 LISTAS
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return empleado;
+    }
+    public Empleado_Sucursal deserializarEmpleadoSuc (JSONObject jObj){
+        Empleado_Sucursal empleado = new Empleado_Sucursal();
+        try{
+            empleado.setNombre(jObj.getString("nombre"));
+            empleado.setMail(jObj.getString("mail"));
+            empleado.setPassword(jObj.getString("password"));
+            empleado.setDNI(jObj.getString("DNI"));
+            empleado.setActivo(jObj.getBoolean("activo"));
+            empleado.setIdEmpleado(jObj.getInt("idEmpleado"));
+            empleado.setTipo(tipoEmpleado.valueOf(jObj.getString("tipo")));
+            empleado.setIngreso(jObj.getDouble("ingreso"));
+            empleado.setCategoria((categoriaEmpleado) jObj.get("categoria"));
+            empleado.setNumVentas(jObj.getInt("numVentas"));
+            empleado.setBono(jObj.getDouble("bono"));
+            empleado.setTurno((Turnos) jObj.get("turno"));
+            empleado.setDeducciones(jObj.getString("deducciones"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return empleado;
+    }
+
+    public List <Empleado_Oficina> deserializarListaEmpleadosOficina (JSONArray jArray){
+        List <Empleado_Oficina> listaEmpleadosOficina = new ArrayList();
+        try{
+            for (int i = 0; i<jArray.length(); i++){
+                listaEmpleadosOficina.add(deserializarEmpleadoOfic(jArray.getJSONObject(i)));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listaEmpleadosOficina;
+    }///VER SI ES EL TIPO DE LISTA, EXCEPCION
+    public List<Empleado_Sucursal> deserializarListaEmpleadosSucursal(JSONArray jArray){
+        List <Empleado_Sucursal> listaEmpleados = new ArrayList();
+        try{
+            for (int i = 0; i<jArray.length(); i++){
+                listaEmpleados.add(deserializarEmpleadoSuc(jArray.getJSONObject(i)));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listaEmpleados;
+    }
+
+
 }

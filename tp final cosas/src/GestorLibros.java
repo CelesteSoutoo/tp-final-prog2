@@ -45,7 +45,6 @@ public final class GestorLibros {
         }
         return objeto;
     }
-
     public JSONArray serializarListaLibros(){
         JSONArray array = null;
         try{
@@ -58,5 +57,38 @@ public final class GestorLibros {
         }
         return array;
     }
+
+    ///----------------------------------- SERIALIZACION DE LIBROS -----------------------------------///
+
+    public Libro deserializarLibro (JSONObject jobj){
+        Libro libro = new Libro ();
+        try{
+            libro.setIsbn(jobj.getString("isbn"));
+            libro.setLocal_id(jobj.getInt("localId"));
+            libro.setNombre(jobj.getString("nombre"));
+            ///FALTA DESERIALIZAR LISTA
+
+
+            libro.setPrecio(jobj.getInt("precio"));
+            libro.setEditorial(jobj.getString("editorial"));
+            libro.setAnio(jobj.getInt("anio"));
+            libro.setDisponible(jobj.getBoolean("disponible"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return libro;
+    } /// VER EXCEPCION
+    public List <Libro> deserializarListaLibros (JSONArray jarray){
+        List <Libro> lista = new ArrayList<>();
+        try{
+            for (int i =0; i<jarray.length(); i++){
+                lista.add(deserializarLibro(jarray.getJSONObject(i)));
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return lista;
+    }/// VER EXCEPCION
 
 }

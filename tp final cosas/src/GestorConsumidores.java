@@ -63,8 +63,37 @@ public class GestorConsumidores {
         return arrayConsumidores;
     }
 
+    ///----------------------------------- DESERIALIZACION DE CONSUMIDORES -----------------------------------///
 
+    public Consumidor deserializarConsumidor (JSONObject jobj){
+        Consumidor consumidor = new Consumidor();
+        try{
+            consumidor.setNombre(jobj.getString("nombre"));
+            consumidor.setMail(jobj.getString("mail"));
+            consumidor.setPassword(jobj.getString("password"));
+            consumidor.setDNI(jobj.getString("DNI"));
+            consumidor.setActivo(jobj.getBoolean("activo"));
+            /// FALTA CARRITO
+            consumidor.setHistorial_compras(jobj.getString("historial_compras"));
+            consumidor.setCantidad_compras(jobj.getInt("cantidad_compras"));
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return consumidor;
+    }
+    public List <Consumidor> deserializarListaConsumidores(JSONArray array){
+        List <Consumidor> listaConsumidores = new LinkedList<>();
+        try{
+            for (int i = 0; i < array.length(); i++){
+                listaConsumidores.add(deserializarConsumidor(array.getJSONObject(i)));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listaConsumidores;
+    }///VER EXCEPCION
 
 
 

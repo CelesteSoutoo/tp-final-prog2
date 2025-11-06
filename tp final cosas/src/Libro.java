@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Libro{
   //atributos de id
-  private final String isbn;
+  private String isbn;
   private int local_id; //para identificar libros que no tengan isbn ademas para poder tener un UNICO hashmap que una tanto libros nuevos y usados
   private static int id_statico=1; //para el "local_id"
 
@@ -54,7 +54,11 @@ public class Libro{
         this.disponible= false;
   }
 
-  //get set
+    public Libro() {
+        this.autores = new ArrayList<>(autores);
+    }
+
+    //get set
 
   public String getIsbn() {
         return isbn;
@@ -112,6 +116,17 @@ public class Libro{
         this.disponible = disponible;
     }
 
+    public void setIsbn(String isbn) {
+      this.isbn = isbn;
+    }
+
+    public void setLocal_id(int local_id) {
+        this.local_id = local_id;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
 
     //metodos
 
